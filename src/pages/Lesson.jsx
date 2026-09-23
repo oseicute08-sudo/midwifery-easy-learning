@@ -20,7 +20,6 @@ import {
   TerminologyTable,
   DirectionalTermCard,
   QuickReview,
-  LessonQuizBlock,
   HeroImage,
   Section,
 } from '../components/LessonComponents';
@@ -30,7 +29,7 @@ export default function Lesson() {
   const { courseId, lessonId } = useParams();
   const course = getCourseById(courseId);
   const content = getLessonContent(lessonId);
-  const { markLessonComplete, isLessonComplete, progress, toggleSavedLesson, isSavedLesson } = useProgress();
+  const { markLessonComplete, isLessonComplete, toggleSavedLesson, isSavedLesson } = useProgress();
 
   if (!course || !content) {
     return (
@@ -48,10 +47,7 @@ export default function Lesson() {
   const isBookmarked = isSavedLesson(lessonId);
 
   const handleComplete = () => markLessonComplete(courseId, lessonId);
-
-  const handleBookmark = () => {
-    toggleSavedLesson(lessonId);
-  };
+  const handleBookmark = () => toggleSavedLesson(lessonId);
 
   return (
     <div className="lesson-page container">
@@ -116,9 +112,6 @@ export default function Lesson() {
         {content.commonMistakes && <CommonMistakes items={content.commonMistakes} />}
         {content.rememberThis && <RememberBox>{content.rememberThis}</RememberBox>}
         {content.quickReview && <QuickReview questions={content.quickReview} />}
-        {content.quizId && (
-          <LessonQuizBlock quiz={{ id: content.quizId, questions: content.quickReview || [] }} />
-        )}
 
         {content.keyTerms && content.keyTerms.length > 0 && (
           <section className="key-terms card" style={{ padding: "1.15rem 1.25rem" }}>
