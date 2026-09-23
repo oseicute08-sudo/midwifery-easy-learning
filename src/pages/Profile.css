@@ -1,0 +1,61 @@
+.profile-page { display: flex; flex-direction: column; gap: 1.25rem; }
+.profile-header {
+  display: flex; align-items: center; gap: 1.15rem; padding: 1.5rem;
+}
+.avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #0f766e);
+  color: #fff; font-size: 1.5rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.profile-info h1 { font-size: 1.25rem; margin-bottom: 0.15rem; }
+.programme { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+.profile-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+.profile-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); padding: 1rem;
+}
+.ps-item { text-align: center; padding: 0.5rem; }
+.ps-val { display: block; font-size: 1.375rem; font-weight: 700; color: var(--primary); }
+.ps-label { font-size: 0.7rem; color: var(--text-muted); }
+
+.settings-section { padding: 1.15rem 1.25rem; }
+.settings-section h2 { font-size: 1rem; margin-bottom: 0.75rem; }
+.setting-row {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 0.75rem 0; color: var(--text);
+}
+.setting-left { display: flex; align-items: center; gap: 0.75rem; font-weight: 500; font-size: 0.9375rem; }
+.setting-value { font-size: 0.875rem; color: var(--text-muted); }
+
+.fav-list { display: flex; flex-direction: column; gap: 0.4rem; }
+.fav-item {
+  display: flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1rem;
+  text-decoration: none; color: inherit; font-size: 0.9375rem; font-weight: 500;
+}
+.fav-item svg:first-child { color: var(--warning); flex-shrink: 0; }
+.fav-item span { flex: 1; }
+.fav-item svg:last-child { color: var(--text-muted); }
+
+.about-section { padding: 1.25rem; }
+.about-section h2 { font-size: 1rem; margin-bottom: 0.75rem; }
+.about-app { font-size: 1rem; margin-bottom: 0.25rem; }
+.about-tagline { font-size: 0.875rem; color: var(--text-secondary); font-style: italic; margin-bottom: 1rem; }
+.about-meta { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
+.about-meta strong { color: var(--text-secondary); }
+.demo-note { font-size: 0.75rem; color: var(--text-muted); padding-top: 0.75rem; border-top: 1px solid var(--border); }
+
+.profile-links { margin-bottom: 0.25rem; }
+.profile-link-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 0.15rem 0.75rem;
+  padding: 1rem 1.15rem;
+  text-decoration: none;
+  color: inherit;
+  align-items: center;
+}
+.profile-link-title { font-weight: 700; font-size: 0.9375rem; grid-column: 1; }
+.profile-link-sub { font-size: 0.8125rem; color: var(--text-muted); grid-column: 1; }
+.profile-link-arrow { grid-row: 1 / span 2; color: var(--text-muted); }

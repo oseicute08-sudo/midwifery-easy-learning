@@ -1,0 +1,63 @@
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+.filter-chip {
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--bg-muted);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  min-height: 36px;
+  cursor: pointer;
+}
+.filter-chip.active {
+  background: var(--primary-soft);
+  color: var(--primary-text);
+  border-color: var(--primary);
+}
+.quiz-center { display: flex; flex-direction: column; gap: 1.25rem; }
+.quiz-filters { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.25rem; }
+.filter-chip {
+  padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 0.8125rem; font-weight: 500;
+  background: var(--bg-muted); color: var(--text-muted); white-space: nowrap; border: 1px solid transparent;
+}
+.filter-chip.active { background: var(--primary-soft); color: var(--primary-text); border-color: var(--primary); }
+
+.quiz-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.quiz-card {
+  display: flex; align-items: flex-start; gap: 1rem; padding: 1.15rem;
+  text-decoration: none; color: inherit;
+}
+.quiz-card-icon {
+  width: 48px; height: 48px; border-radius: 12px; background: #ede9fe; color: #7c3aed;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.dark .quiz-card-icon { background: #2e1065; color: #c4b5fd; }
+.quiz-card-body { flex: 1; min-width: 0; }
+.quiz-type { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
+.quiz-card-body h3 { font-size: 1rem; font-weight: 600; margin: 0.2rem 0 0.35rem; }
+.quiz-card-body p { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 0.5rem; }
+.quiz-meta { display: flex; flex-wrap: wrap; gap: 0.35rem; font-size: 0.75rem; color: var(--text-muted); }
+.quiz-score { color: var(--primary); font-weight: 600; }
+.quiz-card-action { display: flex; align-items: center; font-size: 0.875rem; font-weight: 600; color: var(--primary); flex-shrink: 0; padding-top: 0.5rem; }
+.start, .retake { display: flex; align-items: center; gap: 0.2rem; }
+
+.recent-attempts { margin-top: 0.5rem; }
+.attempts-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.attempt-item { display: flex; text-decoration: none; color: inherit; align-items: center; gap: 0.85rem; padding: 0.85rem 1rem; }
+.attempt-score {
+  width: 48px; height: 48px; border-radius: 12px; background: var(--bg-muted);
+  display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem; flex-shrink: 0;
+}
+.attempt-score[data-pass="true"] { background: var(--accent-soft); color: var(--accent); }
+.attempt-score[data-pass="false"] { background: #fef2f2; color: var(--danger); }
+.dark .attempt-score[data-pass="false"] { background: #450a0a; }
+.attempt-info { flex: 1; }
+.attempt-info h4 { font-size: 0.9375rem; font-weight: 600; }
+.attempt-info span { font-size: 0.75rem; color: var(--text-muted); }
+.pass-icon { color: var(--accent); }

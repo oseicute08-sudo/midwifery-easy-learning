@@ -1,0 +1,46 @@
+.course-detail { display: flex; flex-direction: column; gap: 1.25rem; }
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.25rem;
+  font-size: 0.875rem; font-weight: 500; color: var(--text-muted);
+}
+.back-link:hover { color: var(--primary); }
+
+.cd-header { padding: 1.5rem; }
+.cd-header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; }
+.cd-credits { font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; }
+.cd-header h1 { font-size: 1.375rem; margin-bottom: 0.5rem; }
+.cd-desc { color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.55; margin-bottom: 1.25rem; }
+.cd-progress-block { margin-bottom: 1.25rem; }
+.cd-progress-row { display: flex; justify-content: space-between; font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+.cd-pct { font-weight: 700; color: var(--primary); }
+.cd-cta { width: 100%; }
+
+.cd-objectives { padding: 1.25rem 1.5rem; }
+.cd-objectives h2 { font-size: 1rem; margin-bottom: 0.75rem; }
+.cd-objectives ul { display: flex; flex-direction: column; gap: 0.5rem; }
+.cd-objectives li {
+  display: flex; align-items: flex-start; gap: 0.6rem;
+  font-size: 0.875rem; color: var(--text-secondary); line-height: 1.45;
+}
+.obj-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--primary);
+  margin-top: 0.45rem; flex-shrink: 0;
+}
+
+.cd-lessons .section-title { margin-bottom: 0.75rem; }
+.lesson-modules { display: flex; flex-direction: column; gap: 0.5rem; }
+.module-item {
+  display: flex; align-items: center; gap: 0.85rem; padding: 0.9rem 1rem;
+  text-decoration: none; color: inherit;
+}
+.module-item.completed { border-color: var(--accent); }
+.module-num {
+  width: 36px; height: 36px; border-radius: 10px; background: var(--bg-muted);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.875rem; font-weight: 600; color: var(--text-secondary); flex-shrink: 0;
+}
+.module-num.done { background: var(--accent); color: #fff; }
+.module-body { flex: 1; min-width: 0; }
+.module-body h3 { font-size: 0.9375rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.module-meta { display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.15rem; }
+.module-arrow { color: var(--text-muted); flex-shrink: 0; }
