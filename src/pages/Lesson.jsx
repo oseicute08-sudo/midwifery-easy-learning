@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { getCourseById } from '../data/courses';
 import { getLessonContent } from '../data/lessons';
 import { getLessonVisual } from '../data/lessonVisuals';
+import { getStudyGuide } from '../data/studyGuides/bnd101-l01';
 import { useProgress } from '../context/ProgressContext';
 import {
   IconChevronLeft,
@@ -50,6 +51,9 @@ export default function Lesson() {
     ? { kind: undefined, title: content.diagram.title, description: content.diagram.description, caption: content.diagram.caption }
     : null);
 
+
+  const studyGuide = getStudyGuide(lessonId) || getStudyGuide(content.id);
+
   const handleComplete = () => markLessonComplete(courseId, lessonId);
   const handleBookmark = () => toggleSavedLesson(lessonId);
 
@@ -76,6 +80,7 @@ export default function Lesson() {
             {isBookmarked ? "Bookmarked" : "Bookmark"}
           </button>
         </div>
+        
         <h1>Lesson {content.number}: {content.title}</h1>
         {content.introduction && <p className="lesson-intro-text">{content.introduction}</p>}
       </header>
@@ -134,7 +139,30 @@ export default function Lesson() {
         )}
       </article>
 
+
+      {studyGuide && (
+        <div className="lesson-study-cta" style={{
+          margin: '1rem 0',
+          padding: '0.85rem 1rem',
+          border: '2px solid #0d9488',
+          borderRadius: '12px',
+          background: 'rgba(13, 148, 136, 0.08)',
+        }}>
+          <Link
+            to={"/courses/" + courseId + "/lessons/" + lessonId + "/study"}
+            className="btn btn-primary"
+            style={{ textDecoration: 'none', display: 'inline-block' }}
+          >
+            Open visual study guide (8 pages)
+          </Link>
+          <p style={{ fontSize: '0.85rem', margin: '0.45rem 0 0', opacity: 0.9 }}>
+            Illustrated study-note pages for this lesson. Full lesson text stays above.
+          </p>
+        </div>
+      )}
+
       <div className="lesson-actions">
+
         {!done ? (
           <button className="btn btn-primary complete-btn" onClick={handleComplete}>
             <IconCheck size={18} /> Mark as Complete
