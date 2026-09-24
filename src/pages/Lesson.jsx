@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { getCourseById } from '../data/courses';
 import { getLessonContent } from '../data/lessons';
+import { getLessonVisual } from '../data/lessonVisuals';
 import { useProgress } from '../context/ProgressContext';
 import {
   IconChevronLeft,
@@ -45,6 +46,9 @@ export default function Lesson() {
   const nextLesson = lessonIndex < course.lessons.length - 1 ? course.lessons[lessonIndex + 1] : null;
   const done = isLessonComplete(courseId, lessonId);
   const isBookmarked = isSavedLesson(lessonId);
+  const visual = getLessonVisual(lessonId) || (content.diagram
+    ? { kind: undefined, title: content.diagram.title, description: content.diagram.description, caption: content.diagram.caption }
+    : null);
 
   const handleComplete = () => markLessonComplete(courseId, lessonId);
   const handleBookmark = () => toggleSavedLesson(lessonId);
@@ -100,8 +104,13 @@ export default function Lesson() {
           </Section>
         )}
 
-        {content.diagram && (
-          <AnatomyDiagram title={content.diagram.title} description={content.diagram.description} caption={content.diagram.caption} />
+        {visual && (
+          <AnatomyDiagram
+            kind={visual.kind}
+            title={visual.title}
+            description={visual.description}
+            caption={visual.caption}
+          />
         )}
 
         {content.terminology && <TerminologyTable terms={content.terminology} />}
