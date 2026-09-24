@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
+import { DiagramSvg } from './LessonDiagrams';
+import { useState } from 'react';
 /**
- * Reusable educational components for rich anatomy lessons
+ * Reusable educational components for lessons.
+ * Quizzes live only in Quiz Center — not embedded in lessons.
  */
 
 export function LearningObjectives({ items }) {
@@ -17,13 +19,13 @@ export function LearningObjectives({ items }) {
   );
 }
 
-export function AnatomyDiagram({ title, description, caption }) {
+export function AnatomyDiagram({ kind, title, description, caption }) {
   return (
     <figure className="lc-diagram">
-      <div className="lc-diagram-placeholder">
-        <div className="lc-diagram-icon">🔬</div>
-        <h4>{title}</h4>
-        {description && <p>{description}</p>}
+      <div className="lc-diagram-canvas">
+        <DiagramSvg kind={kind} title={title} />
+        {title && <h4 className="lc-diagram-title">{title}</h4>}
+        {description && <p className="lc-diagram-desc">{description}</p>}
       </div>
       {caption && <figcaption>{caption}</figcaption>}
     </figure>
@@ -32,21 +34,11 @@ export function AnatomyDiagram({ title, description, caption }) {
 
 export function LabeledDiagram({ title, description, labels = [], caption }) {
   return (
-    <figure className="lc-diagram lc-labeled">
-      <div className="lc-diagram-placeholder">
-        <div className="lc-diagram-icon">📐</div>
-        <h4>{title}</h4>
-        {description && <p>{description}</p>}
-        {labels.length > 0 && (
-          <ul className="lc-diagram-labels">
-            {labels.map((l, i) => (
-              <li key={i}><strong>{l.label}:</strong> {l.note}</li>
-            ))}
-          </ul>
-        )}
-      </div>
-      {caption && <figcaption>{caption}</figcaption>}
-    </figure>
+    <AnatomyDiagram
+      title={title}
+      description={[description, ...labels.map((l) => `${l.label}: ${l.note}`)].filter(Boolean).join(' · ')}
+      caption={caption}
+    />
   );
 }
 
@@ -67,21 +59,41 @@ export function ComparisonCard({ title, items }) {
   );
 }
 
+function ExpandableCallout({ label, variant, children }) {
+  const [open, setOpen] = useState(true);
+  const id = `callout-${label.replace(/\s+/g, '-').toLowerCase()}`;
+  return (
+    <aside className={`lc-callout lc-${variant} ${open ? 'is-open' : 'is-collapsed'}`}>
+      <button
+        type="button"
+        className="lc-callout-toggle"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls={id}
+      >
+        <span className="lc-callout-label">{label}</span>
+        <span className={`lc-callout-chevron ${open ? 'open' : ''}`} aria-hidden="true">▾</span>
+      </button>
+      <div id={id} className="lc-callout-body" hidden={!open}>
+        {children}
+      </div>
+    </aside>
+  );
+}
+
 export function ClinicalConnection({ children }) {
   return (
-    <aside className="lc-callout lc-clinical">
-      <div className="lc-callout-label">Clinical Connection</div>
-      <div className="lc-callout-body">{children}</div>
-    </aside>
+    <ExpandableCallout label="Clinical Connection" variant="clinical">
+      {children}
+    </ExpandableCallout>
   );
 }
 
 export function MidwiferyConnection({ children }) {
   return (
-    <aside className="lc-callout lc-midwifery">
-      <div className="lc-callout-label">Midwifery Connection</div>
-      <div className="lc-callout-body">{children}</div>
-    </aside>
+    <ExpandableCallout label="Midwifery Connection" variant="midwifery">
+      {children}
+    </ExpandableCallout>
   );
 }
 
@@ -184,34 +196,6 @@ export function QuickReview({ questions }) {
   );
 }
 
-export function LessonQuizBlock({ quiz }) {
-  // CTA into the full interactive quiz (QuizTake). Preview uses quick-review prompts when provided.
-  if (!quiz?.id) return null;
-  const previews = (quiz.questions || [])
-    .map((q) => q.question || q.q || (typeof q === 'string' ? q : null))
-    .filter(Boolean)
-    .slice(0, 3);
-
-  return (
-    <div className="lc-lesson-quiz">
-      <h3 className="lc-section-title">Lesson Quiz</h3>
-      <p className="lc-quiz-intro">
-        Check your understanding with a short interactive quiz (5 questions with explanations).
-      </p>
-      {previews.length > 0 && (
-        <ul className="lc-quiz-preview">
-          {previews.map((text, i) => (
-            <li key={i}>{text}</li>
-          ))}
-        </ul>
-      )}
-      <Link to={`/quiz/${quiz.id}`} className="btn btn-primary btn-sm" style={{ marginTop: '0.75rem' }}>
-        Take lesson quiz →
-      </Link>
-    </div>
-  );
-}
-
 export function HeroImage({ src, alt, caption }) {
   return (
     <figure className="lc-hero-image">
@@ -228,4 +212,5 @@ export function Section({ title, children }) {
       {children}
     </section>
   );
-}
+                                }
+  
