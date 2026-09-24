@@ -276,12 +276,13 @@ export function DiagramSvg({ kind, title }) {
           <ellipse cx="160" cy="110" rx="85" ry="48" fill="none" stroke="#2563eb" strokeWidth="2" />
           <circle cx="215" cy="110" r="7" fill="#0d9488" />
           <circle cx="75" cy="110" r="7" fill="#2563eb" />
-          <text x="85" y="200" fill="var(--diagram-stroke)" fontSize="11">Nucleus (p+ n⁰) · Electrons in shells</text>
+          <text x="85" y="200" fill="var(--diagram-stroke)" fontSize="11">Nucleus (p+ n0) · Electrons in shells</text>
         </svg>
       );
     case 'periodic':
       return (
         <svg {...commonProps} aria-label={title || 'Periodic table concept'}>
-          {Array.from({ length: 12 }).map((_, i) => {
-            const x = 40 + (i % 6) * 40;
-            const y = 50 + 
+          {Array.from({ length: 12 }).map((_, i) => (
+            <rect
+              key={i}
+              x={40 + (i % 6
