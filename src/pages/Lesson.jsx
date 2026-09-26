@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { getCourseById } from '../data/courses';
 import { getLessonContent } from '../data/lessons';
 import { getLessonVisual } from '../data/lessonVisuals';
-import { getStudyGuide } from '../data/studyGuides/bnd101-l01';
+import { getStudyGuide } from '../data/studyGuides';
 import { useProgress } from '../context/ProgressContext';
 import {
   IconChevronLeft,

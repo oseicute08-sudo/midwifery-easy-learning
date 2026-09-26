@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getCourseById } from '../data/courses';
-import { getStudyGuide } from '../data/studyGuides/bnd101-l01';
+import { getStudyGuide } from '../data/studyGuides';
 import './StudyGuide.css';
 
 /* ---------- Professional medical illustrations (NCI SEER public-domain JPGs) ---------- */
@@ -20,6 +20,7 @@ function MedGrid({ children }) {
 }
 
 const CREDIT = 'NCI SEER — public domain educational illustration';
+
 
 function PageDiagram({ id }) {
   switch (id) {
@@ -78,6 +79,50 @@ function PageDiagram({ id }) {
           <MedImg src="/images/study-guide/endocrine_system.jpg" alt="Major endocrine glands" credit={CREDIT} />
           <MedImg src="/images/study-guide/uterus.jpg" alt="Female reproductive tract — uterus and related structures" credit={CREDIT} />
           <MedImg src="/images/study-guide/lymph_node.jpg" alt="Lymph node structure" credit={CREDIT} />
+        </MedGrid>
+      );
+    case 'chem-cover':
+      return (
+        <MedGrid>
+          <MedImg src="/images/study-guide/chem/periodic.png" alt="Periodic table of the elements — scientific reference" credit="Wikimedia Commons — public domain educational resource" />
+        </MedGrid>
+      );
+    case 'chem-atom':
+      return (
+        <MedGrid>
+          <MedImg src="/images/study-guide/chem/atom.png" alt="Professional Bohr-style atomic structure with nucleus and electron shells" credit="Wikimedia Commons — CC0 / public domain educational illustration" />
+          <MedImg src="/images/study-guide/chem/subatomic-professional.png" alt="Proton, neutron and electron: charge, location and relative mass" credit="MEC educational figure — Level 100" />
+        </MedGrid>
+      );
+    case 'chem-states':
+      return (
+        <MedGrid>
+          <MedImg src="/images/study-guide/chem/states-professional.png" alt="Particle model of solid, liquid and gas with labeled spacing and motion" credit="MEC educational figure based on standard particle theory" />
+        </MedGrid>
+      );
+    case 'chem-pure-mix':
+      return (
+        <MedGrid>
+          <MedImg src="/images/study-guide/chem/pure-mixture-professional.png" alt="Particle diagrams of element, compound, homogeneous mixture and heterogeneous mixture" credit="MEC educational figure — Level 100 chemistry" />
+        </MedGrid>
+      );
+    case 'chem-elements':
+      return (
+        <MedGrid>
+          <MedImg src="/images/study-guide/chem/elements-compounds-professional.png" alt="Healthcare element symbols and common compound formulas" credit="MEC educational figure — Level 100" />
+          <MedImg src="/images/study-guide/chem/sodium-chloride.png" alt="Sodium chloride crystal structure representation" credit="Wikimedia Commons — public domain educational illustration" />
+        </MedGrid>
+      );
+    case 'chem-solution':
+      return (
+        <MedGrid>
+          <MedImg src="/images/study-guide/chem/solution-professional.png" alt="Solution showing solute particles distributed in solvent with concentration note" credit="MEC educational figure — Level 100" />
+        </MedGrid>
+      );
+    case 'chem-clinical':
+      return (
+        <MedGrid>
+          <MedImg src="/images/study-guide/chem/clinical-professional.png" alt="Clinical chemistry applications: IV fluids, laboratory values and medicines" credit="MEC educational figure — nursing and midwifery context" />
         </MedGrid>
       );
     default:
