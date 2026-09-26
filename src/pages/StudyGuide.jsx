@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
-import { Link, useParams, Navigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getCourseById } from '../data/courses';
 import { getStudyGuide } from '../data/studyGuides/bnd101-l01';
 import './StudyGuide.css';
@@ -317,7 +317,39 @@ export default function StudyGuide() {
   }, [pageIndex]);
 
   if (!guide) {
-    return <Navigate to={`/courses/${courseId}/lessons/${lessonId}`} replace />;
+    const courseLabel = course?.code || course?.title || courseId;
+    const lessonLabel = course?.lessons?.find((l) => l.id === lessonId);
+    return (
+      <div className="sg-page">
+        <div className="sg-topbar">
+          <Link to={`/courses/${courseId}/lessons/${lessonId}`} className="sg-back">
+            ← Back to lesson
+          </Link>
+          <span className="sg-course">
+            {courseLabel}
+          </span>
+        </div>
+        <article className="sg-sheet" style={{ textAlign: 'center', padding: '2rem 1.25rem' }}>
+          <h1 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Study guide coming soon</h1>
+          <p style={{ opacity: 0.9, maxWidth: '28rem', margin: '0 auto 1.25rem', lineHeight: 1.5 }}>
+            Visual study notes for{' '}
+            <strong>{lessonLabel?.title || lessonId}</strong>
+            {' '}({courseLabel}) are not available yet. The full lesson text and Quiz Center remain available.
+          </p>
+          <p style={{ fontSize: '0.85rem', opacity: 0.75, marginBottom: '1.5rem' }}>
+            BND 101 Lesson 1 already has a complete illustrated study guide. More lessons will be added without changing your existing lesson content.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', justifyContent: 'center' }}>
+            <Link to={`/courses/${courseId}/lessons/${lessonId}`} className="sg-nav-btn" style={{ textDecoration: 'none' }}>
+              ← Return to lesson
+            </Link>
+            <Link to={`/courses/${courseId}`} className="sg-nav-btn" style={{ textDecoration: 'none' }}>
+              Course outline
+            </Link>
+          </div>
+        </article>
+      </div>
+    );
   }
 
   const total = guide.pages.length;

@@ -140,26 +140,28 @@ export default function Lesson() {
       </article>
 
 
-      {studyGuide && (
-        <div className="lesson-study-cta" style={{
-          margin: '1rem 0',
-          padding: '0.85rem 1rem',
-          border: '2px solid #0d9488',
-          borderRadius: '12px',
-          background: 'rgba(13, 148, 136, 0.08)',
-        }}>
-          <Link
-            to={"/courses/" + courseId + "/lessons/" + lessonId + "/study"}
-            className="btn btn-primary"
-            style={{ textDecoration: 'none', display: 'inline-block' }}
-          >
-            Open visual study guide (8 pages)
-          </Link>
-          <p style={{ fontSize: '0.85rem', margin: '0.45rem 0 0', opacity: 0.9 }}>
-            Illustrated study-note pages for this lesson. Full lesson text stays above.
-          </p>
-        </div>
-      )}
+      <div className="lesson-study-cta" style={{
+        margin: '1rem 0',
+        padding: '0.85rem 1rem',
+        border: '2px solid #0d9488',
+        borderRadius: '12px',
+        background: 'rgba(13, 148, 136, 0.08)',
+      }}>
+        <Link
+          to={"/courses/" + courseId + "/lessons/" + lessonId + "/study"}
+          className="btn btn-primary"
+          style={{ textDecoration: 'none', display: 'inline-block' }}
+        >
+          {studyGuide
+            ? `Open visual study guide (${studyGuide.pages?.length || 12} pages)`
+            : 'Open Study'}
+        </Link>
+        <p style={{ fontSize: '0.85rem', margin: '0.45rem 0 0', opacity: 0.9 }}>
+          {studyGuide
+            ? 'Illustrated study-note pages for this lesson. Full lesson text stays above.'
+            : 'Visual study notes for this lesson. Content is being added — you can open the Study page safely.'}
+        </p>
+      </div>
 
       <div className="lesson-actions">
 
