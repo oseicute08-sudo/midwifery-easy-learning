@@ -507,3 +507,48 @@
     max-height: 280px;
   }
 }
+
+
+/* Professional medical illustration assets */
+.sg-med-grid {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+  .sg-med-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.sg-med-fig {
+  margin: 0;
+  border: 1.5px solid #94a3b8;
+  border-radius: 6px;
+  padding: 0.4rem;
+  background: #fff;
+  overflow: hidden;
+}
+[data-theme='dark'] .sg-med-fig {
+  background: #0f172a;
+  border-color: #475569;
+}
+.sg-med-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  object-fit: contain;
+  background: #fff;
+}
+.sg-med-credit {
+  margin: 0.3rem 0 0;
+  font-size: 0.65rem;
+  line-height: 1.3;
+  color: #64748b;
+}
+[data-theme='dark'] .sg-med-credit {
+  color: #94a3b8;
+}
+.sg-fig-wrap {
+  margin: 0.65rem 0 0.85rem;
+}
